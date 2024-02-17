@@ -55,14 +55,22 @@
 
         var result = await AuthService.LoginAsync(userApp);
 
-        if (result)
+        if (result == "OK")
         {
             // Redireciona para a página "/"
             NavigationManager.NavigateTo("/");
         }
+        else if (result == "Unauthorized")
+            {
+            errorMessage = "Usuário ou senha incorretos";
+            isLoading = false; // Mova para cá para que a tela escureça somente em caso de erro
+            StateHasChanged(); // Atualiza a UI para mostrar a mensagem de erro
+            await Task.Delay(3000);
+            errorMessage = "";
+            }
         else
         {
-            errorMessage = "Erro ao realizar login";
+            errorMessage = "Erro ao realizar login, favor entrar em contato com o suporte";
             isLoading = false; // Mova para cá para que a tela escureça somente em caso de erro
             StateHasChanged(); // Atualiza a UI para mostrar a mensagem de erro
             await Task.Delay(3000);

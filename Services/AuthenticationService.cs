@@ -17,6 +17,8 @@ namespace GestWeb.Services
         public bool IsLoading { get; private set; }
         public bool IsError { get; private set; }
         public string ErrorMessage { get; private set; }
+        public string statusLogin { get; private set; }
+
 
         public AuthenticationService(HttpClient http, CustomAuthenticationStateProvider authenticationStateProvider, IConfiguration configuration)
         {
@@ -27,11 +29,12 @@ namespace GestWeb.Services
 
         public bool IsUserAuthenticated => !string.IsNullOrWhiteSpace(Token);
 
-        public async Task<bool> LoginAsync(UserApp user)
+        public async Task<string> LoginAsync(UserApp user)
         {
             IsLoading = true;
             IsError = false;
             ErrorMessage = string.Empty;
+            statusLogin = string.Empty;
 
             try
             {
@@ -47,7 +50,9 @@ namespace GestWeb.Services
                     {
                         Token = tokenResponse.Token;
                         _authenticationStateProvider.MarkUserAsAuthenticated(Token);
-                        return true;
+                        statusLogin = response.ReasonPhrase.ToString();
+                        return statusLogin;
+                        
                     }
                     else
                     {
@@ -57,6 +62,7 @@ namespace GestWeb.Services
                 }
                 else
                 {
+                    statusLogin = response.ReasonPhrase.ToString();
                     IsError = true;
                     ErrorMessage = "Resposta da API: " + response.StatusCode;
                 }
@@ -69,9 +75,10 @@ namespace GestWeb.Services
             finally
             {
                 IsLoading = false;
+                
             }
 
-            return false;
+            return statusLogin;
         }
 
         public async Task Logout()
