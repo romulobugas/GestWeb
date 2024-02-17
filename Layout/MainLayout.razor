@@ -1,17 +1,38 @@
-﻿@inherits LayoutComponentBase
-
+﻿@using GestWeb.Services
+@using GestWeb.Models
+@inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
+@inject AuthenticationService AuthService
+
+@if (AuthService.IsUserAuthenticated)
+{
+    <div class="top-bar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/technologies">Technologies</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/write-for-us">Write for Us</a></li>
+            <li><a href="/hire-developers">Hire Developers</a></li>
+            <li><a href="" @onclick="Logout">Sair</a></li>
+        </ul>
+    </div>
+}
 
 @Body
 
 @code {
     protected override void OnInitialized()
     {
-        // Redireciona para a página de login se o usuário acessar a raiz do site
-        // Isso é apenas uma demonstração. Adapte conforme necessário.
-        if (NavigationManager.Uri.EndsWith(NavigationManager.BaseUri, StringComparison.OrdinalIgnoreCase))
+        if (!AuthService.IsUserAuthenticated)
         {
-            NavigationManager.NavigateTo("login");
+            NavigationManager.NavigateTo("login", true);
         }
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.Logout(); // Implemente este método no seu serviço de autenticação
+        NavigationManager.NavigateTo("login", true); // O segundo parâmetro força o reload da página
     }
 }

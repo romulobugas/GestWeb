@@ -1,8 +1,12 @@
 ﻿@page "/login"
 @using GestWeb.Models
 @using GestWeb.Services
+@using Microsoft.AspNetCore.Components;
+
+@layout LoginLayout
 
 @inject AuthenticationService AuthService
+@inject NavigationManager NavigationManager
 
 <div class="login-wrapper">
     <div class="@($"login-box{(isLoading ? " loading" : "")}")">
@@ -53,7 +57,8 @@
 
         if (result)
         {
-            // Sucesso...
+            // Redireciona para a página "/"
+            NavigationManager.NavigateTo("/");
         }
         else
         {

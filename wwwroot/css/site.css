@@ -1,0 +1,27 @@
+﻿.top-bar {
+    background-color: #333; /* Cor de fundo da barra superior */
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+    .top-bar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: start;
+    }
+
+        .top-bar ul li {
+            padding: 0.5rem;
+        }
+
+            .top-bar ul li a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+            }
+
+                .top-bar ul li a:hover {
+                    background-color: #555;
+                }
