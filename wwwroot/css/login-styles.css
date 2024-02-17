@@ -1,0 +1,79 @@
+﻿.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* Cor de fundo leve */
+}
+
+.login-box {
+    max-width: 400px; /* Largura máxima para a moldura de login */
+    width: 100%; /* Isso garante que ele seja responsivo */
+    padding: 2rem;
+    background-color: #ffffff; /* Fundo branco para a caixa de login */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto e os elementos internos na caixa de login */
+    position: relative;
+    z-index: 1;
+}
+
+    /* Adiciona uma sombra mais escura quando o carregamento está ativo */
+    .login-box.loading {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+.form-group {
+    margin-bottom: 1rem; /* Espaçamento entre os campos de formulário */
+}
+
+.form-control {
+    width: calc(100% - 1rem); /* Reduz o tamanho para considerar o padding */
+    padding: 0.5rem;
+    border: 1px solid #cccccc; /* Borda sutil para os inputs */
+    border-radius: 4px; /* Bordas levemente arredondadas para os inputs */
+}
+
+.btn-primary {
+    width: auto; /* Permite que o botão tenha a largura do seu conteúdo */
+    padding: 0.5rem 1rem; /* Padding horizontal maior */
+    border: none; /* Remover a borda padrão do botão */
+    background-color: #007bff; /* Cor azul Bootstrap para o botão */
+    color: white; /* Texto branco para o botão */
+    cursor: pointer; /* Cursor de mãozinha ao passar o mouse sobre o botão */
+    border-radius: 4px; /* Bordas arredondadas para o botão */
+    margin-top: 1rem; /* Espaçamento acima do botão */
+    display: block; /* Faz o botão ser um bloco para permitir o alinhamento */
+    margin-left: auto; /* Alinhamento automático à esquerda */
+    margin-right: auto; /* Alinhamento automático à direita */
+}
+
+/* Estilos para a tela de carregamento e mensagens */
+.login-overlay {
+    position: absolute; /* Posição absoluta */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo translúcida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Garante que esteja acima do conteúdo */
+}
+
+.loading-message,
+.error-message {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco translúcido */
+    padding: 1rem;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    position: absolute; /* Posição absoluta */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .login-box {
+        padding: 1rem;
+    }
+}

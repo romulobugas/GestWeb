@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+
+@inject NavigationManager NavigationManager
+
+@Body
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Redireciona para a página de login se o usuário acessar a raiz do site
+        // Isso é apenas uma demonstração. Adapte conforme necessário.
+        if (NavigationManager.Uri.EndsWith(NavigationManager.BaseUri, StringComparison.OrdinalIgnoreCase))
+        {
+            NavigationManager.NavigateTo("login");
+        }
+    }
+}
